@@ -1,0 +1,77 @@
+version: 1
+formatters:
+  detailed:
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: detailed
+    stream: ext://sys.stdout
+  file:
+    class: logging.handlers.RotatingFileHandler
+    level: DEBUG
+    formatter: detailed
+    filename: sales_pipeline.log
+    maxBytes: 10485760
+    backupCount: 5
+loggers:
+  __main__:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+  data_cleaner:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+  data_analyzer:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+  data_visualizer:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+  report_generator:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+  kafka_consumer:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+  config_watcher:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+  data_discovery:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+  monitoring:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+  email_sender:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+  state_manager:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+  dependency_manager:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+  backup_manager:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+  webhook_server:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+root:
+  level: DEBUG
+  handlers: [console, file]

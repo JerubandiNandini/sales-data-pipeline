@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sales-pipeline
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sales-pipeline
+  template:
+    metadata:
+      labels:
+        app: sales-pipeline
+    spec:
+      containers:
+      - name: sales-pipeline
+        image: sales-pipeline:latest
+        env:
+        - name: PYTHONUNBUFFERED
+          value: "1"
+        volumeMounts:
+        - name: data
+          mountPath: /app
+      volumes:
+      - name: data
+        hostPath:
+          path: /app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sales-pipeline
+spec:
+  ports:
+  - port: 8501
+    targetPort: 8501
+  selector:
+    app: sales-pipeline
+  type: LoadBalancer

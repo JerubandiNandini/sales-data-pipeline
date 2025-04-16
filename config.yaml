@@ -1,0 +1,40 @@
+input_file: sample_sales_data.csv
+output_file: cleaned_sales_data.csv
+schema:
+  expected_columns: ['date', 'product', 'sales']
+kafka:
+  topic: sales-data
+  bootstrap_servers: localhost:9092
+visualization:
+  output_dir: visualizations
+  theme: plotly_dark
+report:
+  output_dir: reports
+  language: en
+schedule:
+  batch_time: "00:00"
+data_discovery:
+  input_dir: ./data
+state:
+  file: pipeline_state.json
+slack:
+  token: "your-slack-token"
+  channel: "#pipeline-alerts"
+email:
+  smtp_server: smtp.gmail.com
+  smtp_port: 587
+  sender: your_email@gmail.com
+  password: your_password
+  recipients: ["recipient@example.com"]
+backup:
+  backup_dir: backups
+dependencies:
+  venv_path: .venv
+scaling:
+  max_processes: 4
+  max_kafka_consumers: 2
+logging:
+  hot_reload: true
+webhook:
+  enabled: true
+  port: 8001
